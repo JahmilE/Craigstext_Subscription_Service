@@ -1,28 +1,34 @@
 == README
+This is a demo for including twilio's API in your rails app.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+1.	Start by going to twilio.com and signing up for an account. Register your number. They will give you an SID and an Auth Token
+2.	Start a new rails app add these gems to the gemfile of your app and bundle install
+a.	‘twilio-ruby’
+b.	‘protected_attributes’ 
+c.	‘figaro’
+3.	Add these elements to your User/Subscriber resource. Run and migration and rake db:
+Name:string
+Email:string
+Phone:string
+Verified: Boolean 
 
-Things you may want to cover:
+4.	Let’s start in the user model. The models are the only way our app can talk to the database. They’re the interpreters btw the controller/app and the database. So the controller is like look you are the only one who speaks this language. I need you to go in there and get this information and just so you don’t forget. I’m going to staple this shopping list to your forehead.
+a.	Let the model know what it’s going to be looking for in the database.  You do this with attr_accessible by listing the same variables that you used in the database (the variables that represent columns in your user table. 
+b.	You might also want to add some validations
+5.	We’re going to move on to the User controller and complete the 7 actions. Although for this presentations we’re only fgoing to use 4. Create, new, index, show. 
+6.	Now we’re going move on to the views. So that we can make partner views for the actions that we just defined in the controller.
+a.	Users folder of the views file. We make a new.html.erb file
+b.	So this is essentially an html page that we are creating now.
+c.	This is a page that we are going to show to brand new user. What should go on this page? What kind of information do we want to get from users?
+d.	So the way we get information from users is by using forms. Just like in real life. And the information we want is the same information we created columns in the database for. The same information that we told our models to look for when they go into the database is the same information we need to populate the database with. 
+e.	There are a couple of ways to create form and one is with a separate form partial.   But just for presentations sake. I’m going to put it right in the the new.html.erb
+7.	The final resource we need to set up are the routes. How does the app know which page to send a user to on the website? We give it directions in the routes.rb
+a.	And through the wonders of rails. All of these directions are created.
+b.	But the thing is the first page that we want a new user to see is the form for new users page so we want to make sure that we   
+8.	So far all we’ve done is set up the bare bones of the application. Now we’re going to actually include Twilio’s API’s
+9.	Rails generate Figaro:install
+a.	Generates an application.yml file where you can store you keys: value pairs as environmental variables .
+b.	You want instantiate this information in your create a new subscriber action. Using figaro’s special syntax.
+c.	So our create action now says anytime a new subscriber is created and saved. Send them a text from “my twilio number” to “the subscribers number” with the body…. And after that redirect the page to the show page for that subscriber. 
 
-* Ruby version
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
