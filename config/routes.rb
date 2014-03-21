@@ -1,9 +1,12 @@
 TwilioPresent::Application.routes.draw do
+  
+  devise_for :subscribers 
+  # resources :subscribers, :controller => 'subscribers'
   resources :subscriber_lists
 
   resources :lists
 
-  resources :subscribers
+  
   root to: 'subscribers#new'
 end
 

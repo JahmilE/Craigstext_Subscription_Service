@@ -11,9 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321010931) do
+ActiveRecord::Schema.define(version: 20140321021840) do
 
-  create_table "searched_items", force: true do |t|
+  create_table "search_items", force: true do |t|
     t.string   "name"
     t.integer  "subscriber_id"
     t.string   "search_item_color"
@@ -23,7 +23,10 @@ ActiveRecord::Schema.define(version: 20140321010931) do
     t.string   "search_item_done"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "subscriber_lists_id"
   end
+
+  add_index "search_items", ["subscriber_lists_id"], name: "index_search_items_on_subscriber_lists_id"
 
   create_table "subscriber_lists", force: true do |t|
     t.integer  "subscriber_id"
@@ -34,11 +37,23 @@ ActiveRecord::Schema.define(version: 20140321010931) do
 
   create_table "subscribers", force: true do |t|
     t.string   "name"
-    t.string   "email"
+    t.string   "email",                  default: "", null: false
     t.string   "phone"
     t.boolean  "verified"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
   end
+
+  add_index "subscribers", ["email"], name: "index_subscribers_on_email", unique: true
+  add_index "subscribers", ["reset_password_token"], name: "index_subscribers_on_reset_password_token", unique: true
 
 end
