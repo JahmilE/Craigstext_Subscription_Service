@@ -44,12 +44,26 @@ class SubscribersController < ApplicationController
   def edit
     @subscriber = Subscriber.find(params[:id])
   end
+
   def destroy
     @subscriber = Subscriber.find(params[:id])
     @subscriber.destroy
-
     respond_to do |format|
-      format.html {redirect_to subscribers_path}
+      format.html {redirect_to new_subscribers_path}
+
+    if @subscriber.destroy
+       # Instantiate a Twilio client
+      client = Twilio::REST::Client.new(ENV['sid'], ENV['token'])
+      
+      # Create and send an SMS message
+      client.account.sms.messages.create(
+        from: ENV['from'],
+        to: @subscriber.phone,
+        body: "Okay! You're unsubscribed and will no longer receive craigstexts"
+      )
+        
+
+      end
     end
   end 
 

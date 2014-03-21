@@ -1,4 +1,8 @@
 TwilioPresent::Application.routes.draw do
+  resources :subscriber_lists
+
+  resources :lists
+
   resources :subscribers
   root to: 'subscribers#new'
 end

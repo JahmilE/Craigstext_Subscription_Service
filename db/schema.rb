@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140313153052) do
+ActiveRecord::Schema.define(version: 20140321010931) do
+
+  create_table "searched_items", force: true do |t|
+    t.string   "name"
+    t.integer  "subscriber_id"
+    t.string   "search_item_color"
+    t.string   "search_item_position"
+    t.string   "[]"
+    t.string   "search_item_text"
+    t.string   "search_item_done"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "subscriber_lists", force: true do |t|
+    t.integer  "subscriber_id"
+    t.string   "list_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "subscribers", force: true do |t|
     t.string   "name"

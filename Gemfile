@@ -37,6 +37,8 @@ gem 'protected_attributes'
 gem 'figaro'
 
 gem 'twilio-ruby'
+
+gem 'devise'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
