@@ -1,6 +1,6 @@
-TwilioPresent::Application.routes.draw do
-  resources :subscribers
-  root to: 'subscribers#new'
+CraigstextSubscriptionServiceOld::Application.routes.draw do
+  devise_for :users, controllers: {sessions: 'sessions'}
+#  root to: 'registrations#new', :path => "devise/registrations", :controller => { registrations: 'new'}
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

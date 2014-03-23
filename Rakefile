@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-TwilioPresent::Application.load_tasks
+CraigstextSubscriptionServiceOld::Application.load_tasks
